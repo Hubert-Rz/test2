@@ -1,28 +1,22 @@
-﻿// zadanie domowe dzień 4
+﻿// zadanie domowe dzień 5
 
-string imie = "Ewa";
-bool kobieta = false;
-int wiek = 33;
+int number = 11559990;
+string numberInString = number.ToString();
+char[] letters = numberInString.ToArray();
 
-if (kobieta == true) //kobieta
+
+
+for (int i = 0; i < 10; i++)
 {
-    if (imie == "Ewa" && wiek == 33)
+    string iInString = i.ToString();
+    int licznik = 0;
+    foreach (char letter in letters)
     {
-        Console.WriteLine("Ewa, lat 33");
+        string letterInString = letter.ToString();
+        if (letterInString == iInString)
+        {
+            licznik++;
+        }
     }
-    else if (imie != "Ewa" && wiek < 30)
-    {
-        Console.WriteLine("Kobieta poniżej 30 lat");
-    }
-}
-else //mężczyzna
-{
-    if (wiek < 18)
-    {
-        Console.WriteLine("Niepełnoletni mężczyzna");
-    } 
-    else if ( imie=="Ewa")
-    {
-        Console.WriteLine("Czy mężczyzna może mieć na imię Ewa ?");
-    }
+Console.WriteLine(i + " => " + licznik);
 }

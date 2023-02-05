@@ -9,14 +9,14 @@ char[] letters = numberInString.ToArray();
 for (int i = 0; i < 10; i++)
 {
     string iInString = i.ToString();
-    int licznik = 0;
+    int counter = 0;
     foreach (char letter in letters)
     {
         string letterInString = letter.ToString();
         if (letterInString == iInString)
         {
-            licznik++;
+            counter++;
         }
     }
-Console.WriteLine(i + " => " + licznik);
+Console.WriteLine(i + " => " + counter);
 }

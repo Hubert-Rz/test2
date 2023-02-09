@@ -1,22 +1,47 @@
-﻿// zadanie domowe dzień 5
+﻿// zadanie domowe dzień 6
 
-int number = 11559990;
-string numberInString = number.ToString();
-char[] letters = numberInString.ToArray();
-
-
-
-for (int i = 0; i < 10; i++)
+using test2;
 {
-    string iInString = i.ToString();
-    int counter = 0;
-    foreach (char letter in letters)
+    Employee employee1 = new Employee("Jacek", "Nowak", 44);
+    Employee employee2 = new Employee("Edward", "Kowalski", 46);
+    Employee employee3 = new Employee("Damian", "Nowy", 23);
+    Employee employee4 = new Employee("Radek", "Mocny", 33);
+
+    employee1.AddScore(4);
+    employee2.AddScore(2);
+    employee3.AddScore(5);
+    employee4.AddScore(4);
+
+    employee1.AddScore(6);
+    employee2.AddScore(1);
+    employee3.AddScore(9);
+    employee4.AddScore(7);
+
+    employee1.AddScore(1);
+    employee2.AddScore(8);
+    employee3.AddScore(10);
+    employee4.AddScore(11);
+
+    List<Employee> employees = new List<Employee>()
     {
-        string letterInString = letter.ToString();
-        if (letterInString == iInString)
+        employee1,employee2,employee3,employee4
+
+    };
+    int maxResult = -1;
+    
+    foreach(var employee in employees)
+    {
+        if (employee.Result > maxResult)
         {
-            counter++;
+        maxResult= employee.Result;
         }
     }
-Console.WriteLine(i + " => " + counter);
+    foreach (var employee in employees)
+    {
+        if (employee.Result == maxResult)
+        {
+            Console.WriteLine("Największą liczbę punktów - "+employee.Result+", zdobył "+employee.Name+" "+employee.Surname+" lat "+employee.Age);
+        }
+    }
+
 }

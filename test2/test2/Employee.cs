@@ -17,6 +17,12 @@ namespace test2
         {
             this.score.Add(score);
         }
+        public void SubScore(int score)
+        {
+            score = 0 - score;
+            this.score.Add(score);
+        }
+
         public int Result
         {
             get

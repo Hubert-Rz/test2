@@ -12,8 +12,65 @@ namespace test2
 
         public void AddGrade(float grade)
         {
-            this.grades.Add(grade);
+            //int valueInInt = (int)grade;
+            //float f = (float)valueInInt;
+
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("invalid grade value");
+            }
         }
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not float");
+            }
+
+        }
+        public void AddGrade(double grade)
+        {
+            float result = (float)grade;
+            //float result = (float)Math.Round(grade,4);
+
+            this.AddGrade(result);
+
+        }
+        public void AddGrade(long grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+        public void AddGrade(decimal grade)
+        {
+            float result = (float)grade;
+            this.AddGrade(result);
+        }
+        public void AddGrade(char grade)
+        {
+            float result = (float)grade;
+            if (result >= 48 && result <= 57)
+            {
+                this.AddGrade(result - 48);
+            }
+            else
+            {
+                Console.WriteLine("Char is not float");
+            }
+        }
+        public void AddGrade()
+        {
+            Console.WriteLine("You must enter a grade value!");
+        }
+
         public string Name { get; private set; }
         public string Surname { get; private set; }
 

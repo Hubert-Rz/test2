@@ -1,19 +1,44 @@
 ﻿
 
+using System;
 using test2;
 {
-    var emp = new Employee("Hubert", "Rzazewski");
-    emp.AddGrade(19.1);
-    emp.AddGrade("4000");
-    emp.AddGrade("Hubert");
-    emp.AddGrade(0.987);
-    emp.AddGrade(6);
-    emp.AddGrade(2);
-    emp.AddGrade('1');
-    emp.AddGrade('x');
-    var statistics = emp.GetStatistics();
 
-    Console.WriteLine($"Average: {statistics.Average:N2}");
-    Console.WriteLine($"Min: {statistics.Min}");
-    Console.WriteLine($"Max: {statistics.Max}");
+    Console.WriteLine("Witam w programie XYZ do oceny Pracowników");
+    Console.WriteLine("==========================================");
+    Console.WriteLine("Aby zakończyć wprowadzanie ocen i otrzymać statystykę - wprowadź 'q'.");
+    Console.WriteLine();
+    var employee = new Employee();
+    int index = 1;
+    while (true)
+    {
+        if (index == 1)
+        {
+            Console.WriteLine("Podaj ocenę pracownika:");
+        }
+        else
+        {
+            Console.WriteLine("Podaj kolejną ocenę pracownika:");
+        }
+        var input = Console.ReadLine();
+        if (input == "q")
+        {
+            break;
+        }
+        employee.AddGrade(input);
+        index++;
+    }
+    if (index == 1)
+    {
+        Console.WriteLine("Nie wprowadziłes żadnych ocen, do zobaczenia!");
+        
+    }
+
+    Console.WriteLine("Statystyka pracownika: ");
+    var statistic = employee.GetStatistics();
+    Console.WriteLine($"Average: {statistic.Average}");
+    Console.WriteLine($"Min: {statistic.Min}");
+    Console.WriteLine($"Max: {statistic.Max}");
+
+
 }

@@ -7,51 +7,51 @@ namespace TestProject1
 
 
         [Test]
-        public void WhenAddGradeToEmploye_ThenGetCorrectMinGrade()
+        public void WhenAddGradeNumberOrLetterToEmploye_ThenGetCorrectMinGrade()
         {
             //arange
-            var employee = new Employee("Hubert", "Rz¹¿ewski");
-            employee.AddGrade(3);
-            employee.AddGrade(14);
+            var employee = new Employee();
+            employee.AddGrade(3.1);
+            employee.AddGrade("a");
             employee.AddGrade(6);
             employee.AddGrade(4);
-            employee.AddGrade(8);
+            employee.AddGrade('c');
             //act
             var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(3, statistics.Min);
+            Assert.AreEqual(Math.Round(3.1, 2), Math.Round(statistics.Min,2));
         }
 
         [Test]
-        public void WhenAddGradeToEmploye_ThenGetCorrectMaxGrade()
+        public void WhenAddGradeNumberOrLetterToEmploye_ThenGetCorrectMaxGrade()
         {
             //arange
-            var employee = new Employee("Hubert", "Rz¹¿ewski");
-            employee.AddGrade(3);
-            employee.AddGrade(14);
+            var employee = new Employee();
+            employee.AddGrade(3.1);
+            employee.AddGrade("a");
             employee.AddGrade(6);
             employee.AddGrade(4);
-            employee.AddGrade(8);
+            employee.AddGrade('c');
             //act
             var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(14, statistics.Max);
+            Assert.AreEqual(100, statistics.Max);
         }
 
         [Test]
-        public void WhenAddGradeToEmploye_ThenGetCorrectAvarageGrade()
+        public void WhenAddGradeNumberOrLetterToEmploye_ThenGetCorrectAvarageGrade()
         {
             //arange
-            var employee = new Employee("Hubert", "Rz¹¿ewski");
-            employee.AddGrade(3.1F);
-            employee.AddGrade(14);
+            var employee = new Employee();
+            employee.AddGrade(3.1);
+            employee.AddGrade("a");
             employee.AddGrade(6);
             employee.AddGrade(4);
-            employee.AddGrade(8);
+            employee.AddGrade('c');
             //act
             var statistics = employee.GetStatistics();
             //assert
-            Assert.AreEqual(Math.Round(7.02, 2), Math.Round(statistics.Average), 2);
+            Assert.AreEqual(Math.Round(34.62, 2), Math.Round(statistics.Average), 2);
         }
 
 

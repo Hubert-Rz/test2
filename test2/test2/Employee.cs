@@ -1,13 +1,16 @@
 ﻿
+using System;
+using System.Collections;
+using System.Diagnostics;
+
 namespace test2
 {
     public class Employee
     {
         private List<float> grades = new List<float>();
-        public Employee(string name, string surname)
+        public Employee()
         {
-            this.Name = name;
-            this.Surname = surname;
+            
         }
 
         public void AddGrade(float grade)
@@ -26,15 +29,48 @@ namespace test2
         }
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            if (grade.Length == 1)
             {
-                this.AddGrade(result);
+                char resultChar = grade[0];
+                switch (resultChar)
+                {
+
+                    case 'A':
+                    case 'a':
+                    case 'B':
+                    case 'b':
+                    case 'C':
+                    case 'c':
+                    case 'D':
+                    case 'd':
+                    case 'E':
+                    case 'e':
+                        this.AddGrade(resultChar);
+                        break;
+                    default:
+
+                        if (float.TryParse(grade, out float result))
+                        {
+                            this.AddGrade(result);
+                        }
+                        else
+                        {
+                            Console.WriteLine("String is not float");
+                        }
+                        break;
+                }
             }
             else
             {
-                Console.WriteLine("String is not float");
+                if (float.TryParse(grade, out float result))
+                {
+                    this.AddGrade(result);
+                }
+                else
+                {
+                    Console.WriteLine("String is not float");
+                }
             }
-
         }
         public void AddGrade(double grade)
         {
@@ -56,14 +92,31 @@ namespace test2
         }
         public void AddGrade(char grade)
         {
-            float result = (float)grade;
-            if (result >= 48 && result <= 57)
+        switch(grade)
             {
-                this.AddGrade(result - 48);
-            }
-            else
-            {
-                Console.WriteLine("Char is not float");
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Wrong Letter");
+                    break;
             }
         }
         public void AddGrade()
@@ -89,7 +142,30 @@ namespace test2
             }
 
             statistics.Average = statistics.Average / this.grades.Count;
-
+            switch(statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
+            if(grades.Count == 0)
+            {
+                statistics.Max = 0;
+                statistics.Min = 0;
+                statistics.Average =0;
+            }
             return statistics;
 
         }

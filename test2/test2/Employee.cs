@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace test2
 {
@@ -10,21 +11,24 @@ namespace test2
         private List<float> grades = new List<float>();
         public Employee()
         {
-            
+
+        }
+        public Employee(string name, string surname)
+        {
+            this.Name = name;
+            this.Surname = surname;
         }
 
         public void AddGrade(float grade)
         {
-            //int valueInInt = (int)grade;
-            //float f = (float)valueInInt;
-
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception("invalid grade value");
+
             }
         }
         public void AddGrade(string grade)
@@ -55,7 +59,8 @@ namespace test2
                         }
                         else
                         {
-                            Console.WriteLine("String is not float");
+                            throw new Exception("String is not float");
+                            
                         }
                         break;
                 }
@@ -68,7 +73,8 @@ namespace test2
                 }
                 else
                 {
-                    Console.WriteLine("String is not float");
+                    throw new Exception("String is not float");
+                 
                 }
             }
         }
@@ -92,7 +98,7 @@ namespace test2
         }
         public void AddGrade(char grade)
         {
-        switch(grade)
+            switch (grade)
             {
                 case 'A':
                 case 'a':
@@ -115,13 +121,14 @@ namespace test2
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong Letter");
-                    break;
+                    throw new Exception("Wrong Letter");
+                   
+
             }
         }
         public void AddGrade()
         {
-            Console.WriteLine("You must enter a grade value!");
+            throw new Exception("You must enter a grade value!");   
         }
 
         public string Name { get; private set; }
@@ -142,7 +149,7 @@ namespace test2
             }
 
             statistics.Average = statistics.Average / this.grades.Count;
-            switch(statistics.Average)
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
@@ -160,16 +167,16 @@ namespace test2
                     statistics.AverageLetter = 'E';
                     break;
             }
-            if(grades.Count == 0)
+            if (grades.Count == 0)
             {
                 statistics.Max = 0;
                 statistics.Min = 0;
-                statistics.Average =0;
+                statistics.Average = 0;
             }
             return statistics;
 
         }
-       
+
     }
 }
 

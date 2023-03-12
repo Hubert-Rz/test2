@@ -9,6 +9,7 @@ using test2;
     Console.WriteLine("Aby zakończyć wprowadzanie ocen i otrzymać statystykę - wprowadź 'q'.");
     Console.WriteLine();
     var employee = new Employee();
+
     int index = 1;
     while (true)
     {
@@ -25,8 +26,16 @@ using test2;
         {
             break;
         }
-        employee.AddGrade(input);
-        index++;
+
+        try
+        {
+            employee.AddGrade(input);
+            index++;
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine($"Exception catched: {e.Message}");
+        }
     }
     if (index == 1)
     {

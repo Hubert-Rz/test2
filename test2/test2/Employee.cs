@@ -1,23 +1,26 @@
 ﻿
-using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+
 
 namespace test2
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> grades = new List<float>();
-        public Employee()
+
+        public Employee(string name, string surname, char sex)
+        : base(name, surname, sex)
+
         {
 
         }
-        public Employee(string name, string surname)
+        public Employee()
+        : this("no name", "no surname", '?')
+
         {
-            this.Name = name;
-            this.Surname = surname;
+
         }
+
+
 
         public void AddGrade(float grade)
         {
@@ -60,7 +63,7 @@ namespace test2
                         else
                         {
                             throw new Exception("String is not float");
-                            
+
                         }
                         break;
                 }
@@ -74,7 +77,7 @@ namespace test2
                 else
                 {
                     throw new Exception("String is not float");
-                 
+
                 }
             }
         }
@@ -122,18 +125,18 @@ namespace test2
                     break;
                 default:
                     throw new Exception("Wrong Letter");
-                   
+
 
             }
         }
         public void AddGrade()
         {
-            throw new Exception("You must enter a grade value!");   
+            throw new Exception("You must enter a grade value!");
         }
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-
+        //public string Name { get; private set; }
+        //public string Surname { get; private set; }
+        //public char Sex { get; private set; }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();

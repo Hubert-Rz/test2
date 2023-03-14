@@ -1,23 +1,28 @@
 ﻿
 
 
+using System.Xml.Linq;
+
 namespace test2
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
 
         public Employee(string name, string surname, char sex)
-        : base(name, surname, sex)
 
         {
-
+            this.Name= name;
+            this.Surname= surname;
+            this.Sex=sex;
         }
         public Employee()
         : this("no name", "no surname", '?')
 
         {
-
+            this.Name = "no name";
+            this.Surname = "no surname" ;
+            this.Sex = '?';
         }
 
 
@@ -84,8 +89,6 @@ namespace test2
         public void AddGrade(double grade)
         {
             float result = (float)grade;
-            //float result = (float)Math.Round(grade,4);
-
             this.AddGrade(result);
 
         }
@@ -134,9 +137,9 @@ namespace test2
             throw new Exception("You must enter a grade value!");
         }
 
-        //public string Name { get; private set; }
-        //public string Surname { get; private set; }
-        //public char Sex { get; private set; }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public char Sex { get; private set; }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();

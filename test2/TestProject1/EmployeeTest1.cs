@@ -53,7 +53,22 @@ namespace TestProject1
             //assert
             Assert.AreEqual(Math.Round(34.62, 2), Math.Round(statistics.Average), 2);
         }
-
+        [Test]
+        public void WhenAddGradeNumber1to6ToSupervisor_ThenGetCorrectAvarageGrade()
+        {
+            //arange
+            var supervisor = new Supervisor();
+            supervisor.AddGrade("-2");
+            supervisor.AddGrade("3+");
+            supervisor.AddGrade("6");
+            supervisor.AddGrade("4");
+            supervisor.AddGrade("1");
+            
+            //act
+            var statistics = supervisor.GetStatistics();
+            //assert
+            Assert.AreEqual(Math.Round(44.00, 2), Math.Round(statistics.Average), 2);
+        }
 
     }
 }

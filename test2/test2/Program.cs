@@ -8,7 +8,7 @@ using test2;
     Console.WriteLine("==========================================");
     Console.WriteLine("Aby zakończyć wprowadzanie ocen i otrzymać statystykę - wprowadź 'q'.");
     Console.WriteLine();
-    var employee = new Employee();
+    var employee = new EmployeeInFile();
 
     int index = 1;
     while (true)
@@ -45,9 +45,10 @@ using test2;
 
     Console.WriteLine("Statystyka pracownika: ");
     var statistic = employee.GetStatistics();
-    Console.WriteLine($"Average: {statistic.Average}");
     Console.WriteLine($"Min: {statistic.Min}");
     Console.WriteLine($"Max: {statistic.Max}");
+    Console.WriteLine($"Average: {statistic.Average}");
+    Console.WriteLine($"Average Letter: {statistic.AverageLetter}");
 
 
 }

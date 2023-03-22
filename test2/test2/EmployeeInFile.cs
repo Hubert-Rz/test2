@@ -4,6 +4,7 @@ namespace test2
 {
     internal class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
         private const string fileName = "grade.txt";
         public EmployeeInFile(string name, string surname, char sex) 
             : base(name, surname, sex)
@@ -27,24 +28,24 @@ namespace test2
             {
                 case 'A':
                 case 'a':
-                    this.AddGrade(100);
+                    this.AddGrade(100f);
                    
                     break;
                 case 'B':
                 case 'b':
-                    this.AddGrade(80);
+                    this.AddGrade(80f);
                     break;
                 case 'C':
                 case 'c':
-                    this.AddGrade(60);
+                    this.AddGrade(60f);
                     break;
                 case 'D':
                 case 'd':
-                    this.AddGrade(40);
+                    this.AddGrade(40f);
                     break;
                 case 'E':
                 case 'e':
-                    this.AddGrade(20);
+                    this.AddGrade(20f);
                     break;
                 default:
                     throw new Exception("Wrong Letter");
@@ -127,6 +128,10 @@ namespace test2
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
             }
             else

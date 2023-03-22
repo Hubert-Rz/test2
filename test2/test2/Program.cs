@@ -8,9 +8,16 @@ using test2;
     Console.WriteLine("==========================================");
     Console.WriteLine("Aby zakończyć wprowadzanie ocen i otrzymać statystykę - wprowadź 'q'.");
     Console.WriteLine();
-    var employee = new EmployeeInFile();
+    var employee = new EmployeeInMemory("Hubert", "Rzążewski", 'M'); ;
+    employee.GradeAdded += EmployeeGradeAdded;
+
+    void EmployeeGradeAdded(object sender, EventArgs args)
+    {
+        Console.WriteLine("Dodano nową ocenę");
+    }
 
     int index = 1;
+    
     while (true)
     {
         if (index == 1)
@@ -25,6 +32,9 @@ using test2;
         if (input == "q")
         {
             break;
+        }else if(input == null) 
+        {
+            Console.WriteLine("Nie wprowadziłes żadnej oceny !");
         }
 
         try

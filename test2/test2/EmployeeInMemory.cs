@@ -4,15 +4,20 @@ namespace test2
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
         public EmployeeInMemory( string name, string surname, char sex) 
         :base(name, surname, sex)
-        { 
+            
+        {
+            
         }
         private List<float> grades = new List<float>();
+  
         public override void AddGrade()
         {
             throw new NotImplementedException();
         }
+
 
         public override void AddGrade(char grade)
         {
@@ -20,23 +25,23 @@ namespace test2
             {
                 case 'A':
                 case 'a':
-                    this.grades.Add(100);
+                    this.AddGrade(100f);
                     break;
                 case 'B':
                 case 'b':
-                    this.grades.Add(80);
+                    this.AddGrade(80f);
                     break;
                 case 'C':
                 case 'c':
-                    this.grades.Add(60);
+                    this.AddGrade(60f);
                     break;
                 case 'D':
                 case 'd':
-                    this.grades.Add(40);
+                    this.AddGrade(40f);
                     break;
                 case 'E':
                 case 'e':
-                    this.grades.Add(20);
+                    this.AddGrade(20f);
                     break;
                 default:
                     throw new Exception("Wrong Letter");
@@ -88,6 +93,7 @@ namespace test2
                         if (float.TryParse(grade, out float result))
                         {
                             this.AddGrade(result);
+                       
                         }
                         else
                         {
@@ -102,6 +108,7 @@ namespace test2
                 if (float.TryParse(grade, out float result))
                 {
                     this.AddGrade(result);
+    
                 }
                 else
                 {
@@ -116,6 +123,10 @@ namespace test2
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -126,7 +137,44 @@ namespace test2
 
         public override Statistics GetStatistics()
         {
-            throw new NotImplementedException();
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach (var grade in this.grades)
+            {
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
+            }
+
+            statistics.Average = statistics.Average / this.grades.Count;
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
+            if (grades.Count == 0)
+            {
+                statistics.Max = 0;
+                statistics.Min = 0;
+                statistics.Average = 0;
+            }
+            return statistics;
         }
     }
 }

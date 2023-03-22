@@ -16,5 +16,6 @@ namespace test2
         void AddGrade(string grade);
         void AddGrade(float grade);
         Statistics GetStatistics();
+
     }
 }

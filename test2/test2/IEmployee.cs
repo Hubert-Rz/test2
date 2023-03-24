@@ -1,5 +1,7 @@
 ﻿
 
+using static test2.EmployeeBase;
+
 namespace test2
 {
     //co ?
@@ -15,6 +17,7 @@ namespace test2
         void AddGrade(double grade);
         void AddGrade(string grade);
         void AddGrade(float grade);
+        event GradeAddedDelegate GradeAdded;
         Statistics GetStatistics();
 
     }

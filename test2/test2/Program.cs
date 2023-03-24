@@ -8,7 +8,7 @@ using test2;
     Console.WriteLine("==========================================");
     Console.WriteLine("Aby zakończyć wprowadzanie ocen i otrzymać statystykę - wprowadź 'q'.");
     Console.WriteLine();
-    var employee = new EmployeeInMemory("Hubert", "Rzążewski", 'M'); ;
+    var employee = new EmployeeInFile("Hubert", "Rzążewski", 'M'); ;
     employee.GradeAdded += EmployeeGradeAdded;
 
     void EmployeeGradeAdded(object sender, EventArgs args)
@@ -57,6 +57,8 @@ using test2;
     var statistic = employee.GetStatistics();
     Console.WriteLine($"Min: {statistic.Min}");
     Console.WriteLine($"Max: {statistic.Max}");
+    Console.WriteLine($"Sum: {statistic.Sum}");
+    Console.WriteLine($"Count: {statistic.Count}");
     Console.WriteLine($"Average: {statistic.Average}");
     Console.WriteLine($"Average Letter: {statistic.AverageLetter}");
 
